@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+svg {
+    font: 10px sans-serif;
+    padding: 10px;
+}
+
+.frame {
+    shape-rendering: crispEdges;
+}
+
+.frame {
+    fill: none;
+    stroke: #aaa;
+    stroke-opacity: 0.75;
+}
+
+.feature-cell {
+    opacity: 0.6;
+}
+
+.feature-cell:hover {
+    opacity: 1;
+}
+
+.feature-area {
+    *fill: lightsteelblue;
+    fill-opacity: 0.4;
+    stroke-width: 1;
+}
+
+.feature-line {
+    *stroke: lightsteelblue;
+    stroke-opacity: 1;
+    stroke-width: 1;
+    fill-opacity: 0;
+}
+</style>
+
+<body>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script>
+    var width = 960,
+        size = 150,
+        cw = 60, //cell width
+        ch = 60, //cell hight
+        padding = 4,
+        nCol = 15; //Math.floor((width - padding) / size);
+
+    var color = d3.scale.category20();
+
+    var x = d3.scale.linear()
+        .range([padding / 2, cw - padding / 2]);
+
+    var y = d3.scale.linear()
+        .range([ch - padding / 2, padding / 2]);
+
+    var outerRadius = ch / 2 - padding / 2,
+        innerRadius = 12;
+
+    var angle = d3.scale.linear()
+        .range([0, 2 * Math.PI]);
+
+    var radius = d3.scale.linear()
+        .range([innerRadius, outerRadius]);
+
+    var area = d3.svg.area.radial()
+        .interpolate("cardinal-closed")
+        .angle(function(d, i) {
+            return angle(i);
+        })
+        .innerRadius(function(d) {
+            return radius(0);
+        })
+        .outerRadius(function(d) {
+            return radius(d);
+        });
+
+    var area0 = d3.svg.area.radial()
+        .interpolate("cardinal-closed")
+        .angle(function(d, i) {
+            return angle(i);
+        })
+        .innerRadius(function(d) {
+            return radius(0);
+        })
+        .outerRadius(function(d) {
+            return radius(0);
+        });
+
+
+    function generateData(nFeatures, mBins) {
+        return d3.range(nFeatures).map(function(i) {
+            return {
+                "name": "feature" + i,
+                "col": i % nCol,
+                "row": Math.floor(i / nCol),
+                "bins": d3.range(mBins).map(function(j) {
+                    return Math.random();
+                })
+            };
+        });
+    }
+
+    var fdata = generateData(100, 20);
+    //console.log("fdata", fdata);
+    var svg = d3.select("body").append("svg")
+        .attr("width", width)
+        .attr("height", ch * (Math.floor(fdata.length / nCol) + 1) + padding)
+        .append("g")
+        .attr("transform", "translate(" + padding + "," + padding / 2 + ")");
+
+
+    var cell = svg.selectAll(".feature-cell")
+        .data(fdata)
+        .enter().append("g")
+        .attr("class", "feature-cell")
+        .attr("transform", function(d) {
+            return "translate(" + (d.col * cw + cw / 2) + "," + (d.row * ch + ch / 2) + ")";
+        })
+        .each(featurePlot);
+
+    function featurePlot(f) {
+        var _cell = d3.select(this);
+
+        // Extend the domain slightly to match the range of [0, 2π].
+        angle.domain([0, f.bins.length - 0.88]);
+        radius.domain([0, 1]);
+
+
+        _cell.append("path")
+            .datum(f.bins)
+            .attr("class", "feature-area")
+            .style("fill", function() {
+                return color(f.name);
+            })
+            .style("stroke", function() {return color(f.name);})
+            .attr("d", area0)
+            .transition()
+            .duration(750)
+            .attr("d", area);
+        // _cell.append("path")
+        //     .datum(f.bins)
+        //     .attr("class", "feature-line")
+        //     .style("stroke", function() {
+        //         return color(f.name);
+        //     })
+        //     .attr("d", fline);
+    }
+
+
+    d3.select(self.frameElement).style("height", ch * (Math.floor(fdata.length / nCol) + 1) + padding + 20 + "px");
+    </script>
+</body>
+
+</html>
