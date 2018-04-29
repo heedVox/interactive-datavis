@@ -6,22 +6,20 @@ let showTsv = ( filename ) => {
 
   var formatQuantitative = d3.format("");
 
-  var x = d3.scale.linear()
-      .range([0, width]);
+  var x = d3.scale.ordinal()
+      .rangeRoundBands([0, width], .1);
 
-  var y = d3.scale.ordinal()
-      .rangeRoundBands([0, height], .1);
-
+  var y = d3.scale.linear()
+      .range([height, 0]);
 
   var xAxis = d3.svg.axis()
       .scale(x)
-      .orient("bottom")
-      .tickFormat(formatQuantitative);
+      .orient("bottom");
 
   var yAxis = d3.svg.axis()
       .scale(y)
-      .orient("right")
-
+      .orient("left")
+      .tickFormat(formatQuantitative);
 
   var tip = d3.tip()
     .attr('class', 'd3-tip')
@@ -42,8 +40,8 @@ let showTsv = ( filename ) => {
   svg.call(tip);
 
   d3.tsv( filename, type, function(error, data) {      console.log(data)
-    x.domain([0, d3.max(data, function(d) { return d.value; })]);
-    y.domain(data.map(function(d) { return d.dataType; }));
+    x.domain(data.map(function(d) { return d.dataType; }));
+    y.domain([0, d3.max(data, function(d) { return d.value; })]);
 
     svg.append("g")
       .attr("class", "y axis")
@@ -59,19 +57,19 @@ let showTsv = ( filename ) => {
         .call(yAxis)
       .append("text")
         .attr("transform", "rotate(-90)")
-        .attr("y", -15)
+        .attr("y", 6)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text("Mean frequency (Hz)");
+        .text("Value");
 
     svg.selectAll(".bar")
         .data(data)
       .enter().append("rect")
         .attr("class", "bar")
-        .attr("x", 0)
-        .attr("width", function(d) { return width - x(d.value); })
-        .attr("y", function(d) { return y(d.dataType); })
-        .attr("height", y.rangeBand())
+        .attr("x", function(d) { return x(d.dataType); })
+        .attr("width", x.rangeBand())
+        .attr("y", function(d) { return y(d.value); })
+        .attr("height", function(d) { return height - y(d.value); })
         .on('mouseover', tip.show)
         .on('mouseout', tip.hide)
 
@@ -84,7 +82,6 @@ function type(d) {
     d.dataType = t[0]
     d.value = +t[1]
   }
-  d.dataType = d.dataType.replace("Meanfreq", "")
   d.value = +d.value;
   return d;
 }

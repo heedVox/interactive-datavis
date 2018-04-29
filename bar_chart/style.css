@@ -1,5 +1,6 @@
 body {
   font: 10px sans-serif;
+  font-family: 'Open Sans'
 }
 
 .axis path,
@@ -10,11 +11,12 @@ body {
 }
 
 .bar {
-  fill: #00e600;
+  fill: #ffb72850;
+  transition: .12s;
 }
 
 .bar:hover {
-  fill: #008000 ;
+  fill: #ffb728A0 ;
 }
 
 .x.axis path {
