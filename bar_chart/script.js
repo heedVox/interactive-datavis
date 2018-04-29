@@ -12,11 +12,11 @@ var y = d3.scale.linear()
 
 var xAxis = d3.svg.axis()
     .scale(x)
-    .orient("left");
+    .orient("bottom");
 
 var yAxis = d3.svg.axis()
     .scale(y)
-    .orient("bottom")
+    .orient("left")
     .tickFormat(formatQuantitative);
 
 var tip = d3.tip()
