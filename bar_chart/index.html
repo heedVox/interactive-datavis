@@ -95,7 +95,7 @@ var svg = d3.select("body").append("svg")
 
 svg.call(tip);
 
-d3.tsv("data.tsv", type, function(error, data) {
+d3.tsv("data1.tsv", type, function(error, data) {
   x.domain(data.map(function(d) { return d.dataType; }));
   y.domain([0, d3.max(data, function(d) { return d.value; })]);
 
