@@ -10,98 +10,91 @@
 
 		<!-- D3.js -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
-		
+
 		<style>
 			body {
-				font-family: 'Open Sans', sans-serif;
-				font-size: 11px;
-				font-weight: 300;
-				fill: #242424;
-				text-align: center;
-				text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+				font-size: 14px;
+				font-weight: 500;
 				cursor: default;
 			}
-			
-			.legend {
-				font-family: 'Raleway', sans-serif;
-				fill: #333333;
+
+			#pattern1{
+				width: 100%;
+				display:inline-flex;
+				flex:auto;
 			}
-			
+
+			#radarChart1, #radarChart2{
+				margin-right: 5%;
+				position: relative;
+				width:15%;
+			}
+
+			.legend {
+				font-size: 10px;
+			}
+
 			.tooltip {
 				fill: #333333;
 			}
 		</style>
-	
+
 	</head>
 	<body>
 
-		<div class="radarChart"></div>
+		<section id="pattern1">
+			<div id="radarChart1"></div>
+			<div id="radarChart2"></div>
+			<div id="radarChart3"></div>
+			<div id="radarChart4"></div>
+			<div id="radarChart5"></div>
+		</section>
 
-		<script src="radarChart.js"></script>	
+		<section id="pattern2">
+			<div id="radarChart6"></div>
+			<div id="radarChart7"></div>
+			<div id="radarChart8"></div>
+			<div id="radarChart9"></div>
+			<div id="radarChart10"></div>
+		</section>
+
+		<section id="pattern3">
+			<div id="radarChart11"></div>
+			<div id="radarChart12"></div>
+			<div id="radarChart13"></div>
+			<div id="radarChart14"></div>
+			<div id="radarChart15"></div>
+		</section>
+
+		<section id="pattern4">
+			<div id="radarChart16"></div>
+			<div id="radarChart17"></div>
+			<div id="radarChart18"></div>
+			<div id="radarChart19"></div>
+			<div id="radarChart20"></div>
+		</section>
+
+		<script src="radarChart.js"></script>
 		<script>
-      
-      /* Radar chart design created by Nadieh Bremer - VisualCinnamon.com */
-      
-			////////////////////////////////////////////////////////////// 
-			//////////////////////// Set-Up ////////////////////////////// 
-			////////////////////////////////////////////////////////////// 
 
-			var margin = {top: 100, right: 100, bottom: 100, left: 100},
-				width = Math.min(700, window.innerWidth - 10) - margin.left - margin.right,
+			var margin = {top: 50, right: 50, bottom: 50, left: 50},
+				width = Math.min(250, window.innerWidth - 10) - margin.left - margin.right,
 				height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
-					
-			////////////////////////////////////////////////////////////// 
-			////////////////////////// Data ////////////////////////////// 
-			////////////////////////////////////////////////////////////// 
 
-			var data = [
-					  [//iPhone
-						{axis:"Battery Life",value:0.22},
-						{axis:"Brand",value:0.28},
-						{axis:"Contract Cost",value:0.29},
-						{axis:"Design And Quality",value:0.17},
-						{axis:"Have Internet Connectivity",value:0.22},
-						{axis:"Large Screen",value:0.02},
-						{axis:"Price Of Device",value:0.21},
-						{axis:"To Be A Smartphone",value:0.50}			
-					  ],[//Samsung
-						{axis:"Battery Life",value:0.27},
-						{axis:"Brand",value:0.16},
-						{axis:"Contract Cost",value:0.35},
-						{axis:"Design And Quality",value:0.13},
-						{axis:"Have Internet Connectivity",value:0.20},
-						{axis:"Large Screen",value:0.13},
-						{axis:"Price Of Device",value:0.35},
-						{axis:"To Be A Smartphone",value:0.38}
-					  ],[//Nokia Smartphone
-						{axis:"Battery Life",value:0.26},
-						{axis:"Brand",value:0.10},
-						{axis:"Contract Cost",value:0.30},
-						{axis:"Design And Quality",value:0.14},
-						{axis:"Have Internet Connectivity",value:0.22},
-						{axis:"Large Screen",value:0.04},
-						{axis:"Price Of Device",value:0.41},
-						{axis:"To Be A Smartphone",value:0.30}
-					  ]
-					];
-			////////////////////////////////////////////////////////////// 
-			//////////////////// Draw the Chart ////////////////////////// 
-			////////////////////////////////////////////////////////////// 
+			var color1 = d3.scale.ordinal().range(["#00A0B0"]);
+			var radarChartOptions1 = {w: width,h: height,margin: margin,maxValue: 4,levels: 4,roundStrokes: true,color: color1};
 
-			var color = d3.scale.ordinal()
-				.range(["#EDC951","#CC333F","#00A0B0"]);
-				
-			var radarChartOptions = {
-			  w: width,
-			  h: height,
-			  margin: margin,
-			  maxValue: 0.5,
-			  levels: 5,
-			  roundStrokes: true,
-			  color: color
-			};
-			//Call function to draw the Radar chart
-			RadarChart(".radarChart", data, radarChartOptions);
+			var data1 = [[{axis:"Priority",value:2},{axis:"Pleasure",value:4},{axis:"Workload",value:1},]];
+			var data2 = [[{axis:"Priority",value:1},{axis:"Pleasure",value:2},{axis:"Workload",value:4},]];
+			var data3 = [[{axis:"Priority",value:3},{axis:"Pleasure",value:1},{axis:"Workload",value:3},]];
+			var data4 = [[{axis:"Priority",value:1},{axis:"Pleasure",value:4},{axis:"Workload",value:3},]];
+			var data5 = [[{axis:"Priority",value:2},{axis:"Pleasure",value:3},{axis:"Workload",value:1},]];
+			
+			RadarChart("#radarChart1", data1, radarChartOptions1);
+			RadarChart("#radarChart2", data2, radarChartOptions1);
+			RadarChart("#radarChart3", data3, radarChartOptions1);
+			RadarChart("#radarChart4", data4, radarChartOptions1);
+			RadarChart("#radarChart5", data5, radarChartOptions1);
 		</script>
 	</body>
 </html>
