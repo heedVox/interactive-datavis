@@ -16,10 +16,10 @@ let colors = [
 
 //Options of the charts
 let radarChartOptions = [
+    {w: width,h: height,margin: margin,maxValue: 4,levels: 4,roundStrokes: true,color: colors[0]},
     {w: width,h: height,margin: margin,maxValue: 4,levels: 4,roundStrokes: true,color: colors[1]},
     {w: width,h: height,margin: margin,maxValue: 4,levels: 4,roundStrokes: true,color: colors[2]},
-    {w: width,h: height,margin: margin,maxValue: 4,levels: 4,roundStrokes: true,color: colors[3]},
-    {w: width,h: height,margin: margin,maxValue: 4,levels: 4,roundStrokes: true,color: colors[4]}
+    {w: width,h: height,margin: margin,maxValue: 4,levels: 4,roundStrokes: true,color: colors[3]}
   ];
 
 //Data of the charts
@@ -154,7 +154,6 @@ function scientificNotation(val, pres) {
 
 function generateChart( idx, data, options ) {
   let radId = `radarChart${idx+1}`
-  console.log(radId)
   RadarChart("#"+radId, data, options);
   let barChart = showTsv(`data${idx+1}.tsv`, options )
   let div = document.getElementById(radId)
@@ -166,6 +165,5 @@ function generateChart( idx, data, options ) {
 // ===============================
 for(let i = 0; i < 20; i++) {
   let colIdx = Math.floor(i/5)
-  console.log(colIdx)
   generateChart( i, areaChartDatas[i], radarChartOptions[colIdx] )
 }
