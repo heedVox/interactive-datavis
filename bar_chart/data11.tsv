@@ -1,4 +1,4 @@
 dataType	value
-edaMeanfreq	0.0002505657902
-emgZygoMeanfreq	0.00009383259184
-emgCorrMeanfreq	0.001559987004
+EDA (priority)	0.0002505657902
+Zygomatic (pleasure)	0.00009383259184
+Corrugator (workload)	0.001559987004
