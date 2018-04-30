@@ -2,6 +2,7 @@ body {
 	font-size: 12px;
 	font-weight: 500;
 	cursor: default;
+  font-family: "Open Sans", sans-serif;
 }
 
 .axis path,
@@ -11,12 +12,29 @@ body {
 	shape-rendering: crispEdges;
 }
 
+.card {
+  text-align: center;
+    box-shadow: 2px 1px 10px 0px #D0D0D0 inset;
+    width: 19vw;
+    margin: .5vw;
+}
+
 .bar {
-	fill: #00e600;
+	fill: #808080;
+  opacity: .5;
 }
 
 .bar:hover {
-	fill: #008000 ;
+	fill: #808080 ;
+  opacity: .9;
+}
+
+.fill-turquoise {
+  fill: #00A0B0;
+}
+
+.fill-yellow {
+  fill: #EDC951;
 }
 
 .x.axis path {
@@ -58,14 +76,14 @@ body {
 	flex:auto;
 }
 
-#radarChart1, #radarChart2, #radarChart3, #radarChart4, #radarChart5,
+/* #radarChart1, #radarChart2, #radarChart3, #radarChart4, #radarChart5,
 #radarChart6, #radarChart7, #radarChart8, #radarChart9, #radarChart10,
 #radarChart11, #radarChart12, #radarChart13, #radarChart14, #radarChart15,
 #radarChart16, #radarChart17, #radarChart18, #radarChart19, #radarChart20{
 	margin-right: 10%;
 	position: relative;
 	width:10%;
-}
+} */
 
 .legend {
 	font-size: 10px;
