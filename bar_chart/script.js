@@ -26,24 +26,24 @@ let radarChartOptions = [
 let areaChartDatas = [
     [[{axis:"Priority",value:2},{axis:"Pleasure",value:3},{axis:"Workload",value:1},]],
     [[{axis:"Priority",value:1},{axis:"Pleasure",value:3},{axis:"Workload",value:1},]],
-    [[{axis:"Priority",value:1},{axis:"Pleasure",value:1},{axis:"Workload",value:1},]],
-    [[{axis:"Priority",value:1},{axis:"Pleasure",value:1},{axis:"Workload",value:1},]],
-    [[{axis:"Priority",value:1},{axis:"Pleasure",value:1},{axis:"Workload",value:1},]],
-    [[{axis:"Priority",value:4},{axis:"Pleasure",value:4},{axis:"Workload",value:1},]],
-    [[{axis:"Priority",value:1},{axis:"Pleasure",value:2},{axis:"Workload",value:1},]],
-    [[{axis:"Priority",value:1},{axis:"Pleasure",value:1},{axis:"Workload",value:1},]],
-    [[{axis:"Priority",value:2},{axis:"Pleasure",value:3},{axis:"Workload",value:1},]],
-    [[{axis:"Priority",value:4},{axis:"Pleasure",value:4},{axis:"Workload",value:4},]],
-    [[{axis:"Priority",value:4},{axis:"Pleasure",value:3},{axis:"Workload",value:4},]],
-    [[{axis:"Priority",value:4},{axis:"Pleasure",value:4},{axis:"Workload",value:1},]],
+    [[{axis:"Priority",value:2},{axis:"Pleasure",value:4},{axis:"Workload",value:2},]],
+    [[{axis:"Priority",value:1},{axis:"Pleasure",value:4},{axis:"Workload",value:2},]],
+    [[{axis:"Priority",value:3},{axis:"Pleasure",value:4},{axis:"Workload",value:2},]],
+    [[{axis:"Priority",value:3},{axis:"Pleasure",value:1},{axis:"Workload",value:1},]],
+    [[{axis:"Priority",value:4},{axis:"Pleasure",value:2},{axis:"Workload",value:1},]],
+    [[{axis:"Priority",value:4},{axis:"Pleasure",value:1},{axis:"Workload",value:3},]],
+    [[{axis:"Priority",value:2},{axis:"Pleasure",value:1},{axis:"Workload",value:1},]],
+    [[{axis:"Priority",value:3},{axis:"Pleasure",value:1},{axis:"Workload",value:2},]],
+    [[{axis:"Priority",value:2},{axis:"Pleasure",value:1},{axis:"Workload",value:4},]],
+    [[{axis:"Priority",value:1},{axis:"Pleasure",value:1},{axis:"Workload",value:4},]],
     [[{axis:"Priority",value:4},{axis:"Pleasure",value:1},{axis:"Workload",value:4},]],
-    [[{axis:"Priority",value:1},{axis:"Pleasure",value:1},{axis:"Workload",value:1},]],
+    [[{axis:"Priority",value:2},{axis:"Pleasure",value:2},{axis:"Workload",value:3},]],
+    [[{axis:"Priority",value:3},{axis:"Pleasure",value:1},{axis:"Workload",value:4},]],
     [[{axis:"Priority",value:4},{axis:"Pleasure",value:4},{axis:"Workload",value:4},]],
-    [[{axis:"Priority",value:2},{axis:"Pleasure",value:3},{axis:"Workload",value:1},]],
-    [[{axis:"Priority",value:4},{axis:"Pleasure",value:1},{axis:"Workload",value:1},]],
+    [[{axis:"Priority",value:3},{axis:"Pleasure",value:3},{axis:"Workload",value:1},]],
     [[{axis:"Priority",value:1},{axis:"Pleasure",value:1},{axis:"Workload",value:1},]],
     [[{axis:"Priority",value:1},{axis:"Pleasure",value:4},{axis:"Workload",value:4},]],
-    [[{axis:"Priority",value:1},{axis:"Pleasure",value:1},{axis:"Workload",value:1},]]
+    [[{axis:"Priority",value:2},{axis:"Pleasure",value:2},{axis:"Workload",value:2},]]
   ];
 
 
@@ -126,7 +126,6 @@ let showTsv = ( filename, options ) => {
         .attr("height", y.rangeBand())
         .on('mouseover', tip.show)
         .on('mouseout', tip.hide)
-    console.log(options)
     if(options.color)
       bar.style("fill", function(d,i) { return options.color(i); })
   });
