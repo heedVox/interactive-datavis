@@ -1,7 +1,7 @@
 //Implemetation of the radial area chart
 
 //Common variables
-var margin = {top: 50, right: 50, bottom: 50, left: 50},
+var margin = {top: 30, right: 30, bottom: 30, left: 30},
 	width = Math.min(200, window.innerWidth - 10) - margin.left - margin.right,
 	height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
 
@@ -54,7 +54,7 @@ let showTsv = ( filename, options ) => {
 	//Common variables
   var margin = {top: 40, right: 20, bottom: 30, left: 40},
       width = 260 - margin.left - margin.right,
-      height = 150 - margin.top - margin.bottom;
+      height = 120 - margin.top - margin.bottom;
 
 	//Format of the bars
   var formatQuantitative = d3.format("");
@@ -88,10 +88,10 @@ let showTsv = ( filename, options ) => {
 
 	//Implementation of the svg
   var svg = container.append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
+      .attr("width", width )
+      .attr("height", height + margin.bottom)
     .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+      // .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
   svg.call(tip);
 
@@ -165,5 +165,7 @@ function generateChart( idx, data, options ) {
 // ========== Bootstrap the charts
 // ===============================
 for(let i = 1; i <= 20; i++) {
-  generateChart( i, areaChartDatas[i], radarChartOptions[Math.floor((i-1)/5)] )
+  let colIdx = Math.floor((i-1)/5)
+  console.log(colIdx)
+  generateChart( i, areaChartDatas[i], radarChartOptions[colIdx] )
 }

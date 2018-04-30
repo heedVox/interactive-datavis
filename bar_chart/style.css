@@ -3,6 +3,7 @@ body {
 	font-weight: 500;
 	cursor: default;
   font-family: "Open Sans", sans-serif;
+	padding: 0;
 }
 
 .axis path,
@@ -12,11 +13,23 @@ body {
 	shape-rendering: crispEdges;
 }
 
+section {
+	background-color: #e5f4f8;
+	box-shadow: -2px 1px 2px 0px #D0D0D0;
+	margin: 1vw;
+	padding: 1vw .5vw;
+	width: 96vw;
+	display:inline-flex;
+	flex:auto;
+	/* margin: 1vw; */
+}
+
 .card {
+	background-color: white;
   text-align: center;
-    box-shadow: 2px 1px 10px 0px #D0D0D0 inset;
-    width: 19vw;
-    margin: .5vw;
+  box-shadow: -2px 1px 2px 0px #D0D0D0 inset;
+  width: 19%;
+  margin: .5%;
 }
 
 .bar {
@@ -69,12 +82,10 @@ body {
 	top: 100%;
 	left: 0;
 }
-
+/*
 #pattern1,#pattern2,#pattern3,#pattern4{
-	width: 100%;
-	display:inline-flex;
-	flex:auto;
-}
+
+} */
 
 /* #radarChart1, #radarChart2, #radarChart3, #radarChart4, #radarChart5,
 #radarChart6, #radarChart7, #radarChart8, #radarChart9, #radarChart10,
