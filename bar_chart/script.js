@@ -153,10 +153,10 @@ function scientificNotation(val, pres) {
 }
 
 function generateChart( idx, data, options ) {
-  let radId = `radarChart${idx}`
+  let radId = `radarChart${idx+1}`
   console.log(radId)
   RadarChart("#"+radId, data, options);
-  let barChart = showTsv(`data${idx}.tsv`, options )
+  let barChart = showTsv(`data${idx+1}.tsv`, options )
   let div = document.getElementById(radId)
   div.appendChild(barChart[0][0])
 }
@@ -164,8 +164,8 @@ function generateChart( idx, data, options ) {
 // ===============================
 // ========== Bootstrap the charts
 // ===============================
-for(let i = 1; i <= 20; i++) {
-  let colIdx = Math.floor((i-1)/5)
+for(let i = 0; i < 20; i++) {
+  let colIdx = Math.floor(i/5)
   console.log(colIdx)
   generateChart( i, areaChartDatas[i], radarChartOptions[colIdx] )
 }
